@@ -1,6 +1,6 @@
 const express = require("express")
 const cors = require("cors")
-const { MongoClient } = require("mongodb")
+const { MongoClient, ObjectId } = require("mongodb")
 require("dotenv").config()
 
 const app = express()
@@ -36,19 +36,41 @@ async function run() {
       const query = { parent: id }
       const cursor = foldersCollection.find(query)
 
-      const folder = await cursor.toArray()
-      res.json(folder)
+      const folders = await cursor.toArray()
+      res.json(folders)
     })
 
     // get details of folder by id
     app.get("/folderDetails/:id", async (req, res) => {
       const id = req.params.id
-      const query = { _id: id }
-      const cursor = foldersCollection.find(query)
+      console.log(id)
+      let query, cursor, folder
 
-      const folder = await cursor.toArray()
+      if (id == "-1") {
+        folder = {
+          _id: "-1",
+          name: "My Drive",
+          type: "folder",
+          ancestors: [],
+        }
+      } else {
+        query = { _id: ObjectId(id) }
+        cursor = foldersCollection.find(query)
+        folder = await cursor.toArray()
+      }
       res.json(folder)
     })
+
+    // post new folder
+    app.post("/folders", async (req, res) => {
+      const folder = req.body
+      const result = await foldersCollection.insertOne(folder)
+      res.json(result)
+    })
+
+    // delete folder and children if exists
+
+    // update folder name
   } finally {
   }
 }
