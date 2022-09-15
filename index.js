@@ -53,6 +53,7 @@ async function run() {
           _id: "-1",
           name: "My Drive",
           type: "folder",
+          level: 0,
           ancestors: [],
         }
       } else {
