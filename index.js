@@ -97,7 +97,7 @@ async function run() {
       // if children exist, update them
       const childrenFilter = { "ancestors.id": id }
       const updateChildren = { $set: { "ancestors.$.name": folder.name } }
-      const result = await foldersCollection.updateMany(childrenFilter, updateChildren, options)
+      const result = await foldersCollection.updateMany(childrenFilter, updateChildren)
 
       // return total modified count
       result.modifiedCount = parent.modifiedCount + result.modifiedCount
