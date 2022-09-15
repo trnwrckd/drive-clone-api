@@ -72,7 +72,7 @@ async function run() {
     })
 
     // delete folder and children if exists
-    app.delete("/delete/:id", async (req, res) => {
+    app.delete("/folders/:id", async (req, res) => {
       const id = req.params.id
       const query = { _id: ObjectId(id) }
       const parent = await foldersCollection.deleteOne(query) // remove parent
@@ -85,7 +85,7 @@ async function run() {
     })
 
     // update folder name
-    app.put("/update/:id", async (req, res) => {
+    app.put("/folders/:id", async (req, res) => {
       const folder = req.body
       const id = folder._id
 
