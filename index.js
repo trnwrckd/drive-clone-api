@@ -60,8 +60,8 @@ async function run() {
         query = { _id: ObjectId(id) }
         cursor = foldersCollection.find(query)
         folder = await cursor.toArray()
-        res.json(folder)
       }
+      res.json(folder)
     })
 
     // post new folder
