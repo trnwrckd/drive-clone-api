@@ -20,11 +20,11 @@ interface Folder {
 
 ## Endpoints
 
-1. GET /folders - returns all folders : Folder[]
-2. GET /folders/:id - returns childrens of folder.id : Folder[]
-3. POST /folders - inserts req.params.folder to collection
-4. PUT /folders/:id - updates "name" property of folder.id  
-   and updates ancestors.$.name if ancestors.$.id == folder.id
-5. DELETE /folders/:id - deletes "name" property of folder.id  
-   and deletes all folders f where f.parent == folder.id
-6. GET /folderDetails/:id returns folder object by matching id : Folder
+| Endpoint               | Description                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| GET /folderDetails/:id | returns folder object by matching id : Folder                                                    |
+| GET /folders           | returns all folders : Folder[]                                                                   |
+| GET /folders/:id       | returns childrens of folder.id : Folder[]                                                        |
+| POST /folders          | inserts req.params.folder to collection                                                          |
+| PUT /folders/:id       | updates "name" property of folder.id and updates ancestors.$.name if ancestors.$.id == folder.id |
+| DELETE /folders/:id    | deletes "name" property of folder.id and deletes all folders f where f.parent == folder.id       |
